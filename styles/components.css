@@ -1,0 +1,199 @@
+/**
+ * Component-specific utility classes
+ * These are additional styles that don't fit in the main globals.css
+ */
+
+/* Product card specific styles */
+.product-card-image-overlay {
+  @apply absolute inset-0 bg-black/0 group-hover:bg-black/20;
+  @apply transition-all duration-300 ease-in-out;
+  @apply flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100;
+}
+
+.product-card-action-btn {
+  @apply bg-white dark:bg-neutral-800 text-neutral-800 dark:text-white;
+  @apply p-2 rounded-full shadow-lg hover:scale-110 transition-transform;
+  @apply focus:outline-none focus:ring-2 focus:ring-primary-500;
+}
+
+/* Cart drawer styles */
+.cart-drawer-backdrop {
+  @apply fixed inset-0 bg-black/50 z-40 transition-opacity;
+}
+
+.cart-drawer-panel {
+  @apply fixed right-0 top-0 h-full w-full sm:w-96 bg-white dark:bg-neutral-900;
+  @apply shadow-2xl z-50 transform transition-transform duration-300;
+}
+
+/* Search bar styles */
+.search-results-dropdown {
+  @apply absolute top-full left-0 right-0 mt-2 bg-white dark:bg-neutral-800;
+  @apply border border-neutral-200 dark:border-neutral-700 rounded-xl;
+  @apply shadow-lg max-h-96 overflow-y-auto;
+  @apply z-50;
+}
+
+/* Add scrollbar styling separately */
+.search-results-dropdown::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.search-results-dropdown::-webkit-scrollbar-track {
+  @apply bg-neutral-100 dark:bg-neutral-900;
+}
+
+.search-results-dropdown::-webkit-scrollbar-thumb {
+  @apply bg-neutral-300 dark:bg-neutral-700 rounded-full;
+}
+
+.search-results-dropdown::-webkit-scrollbar-thumb:hover {
+  @apply bg-neutral-400 dark:bg-neutral-600;
+}
+
+/* Discount badge animation */
+.discount-badge {
+  @apply bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200;
+  @apply font-bold inline-flex items-center px-2.5 py-0.5 rounded-full text-xs;
+  animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Favorite heart animation */
+.favorite-heart {
+  @apply transition-all duration-200;
+}
+
+.favorite-heart.active {
+  @apply text-red-500 scale-110;
+}
+
+.favorite-heart:not(.active) {
+  @apply text-neutral-400 hover:text-red-400 hover:scale-105;
+}
+
+/* Skeleton loading states */
+.skeleton {
+  @apply bg-neutral-200 dark:bg-neutral-700 animate-pulse rounded;
+}
+
+.skeleton-text {
+  @apply bg-neutral-200 dark:bg-neutral-700 animate-pulse rounded h-4 w-full;
+}
+
+.skeleton-image {
+  @apply bg-neutral-200 dark:bg-neutral-700 animate-pulse rounded aspect-square w-full;
+}
+
+/* Toast notification styles */
+.toast {
+  @apply fixed bottom-4 right-4 z-50 bg-white dark:bg-neutral-800;
+  @apply border border-neutral-200 dark:border-neutral-700 rounded-lg shadow-lg;
+  @apply px-4 py-3 min-w-[250px];
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.toast-success {
+  @apply border-l-4 border-l-green-500;
+}
+
+.toast-error {
+  @apply border-l-4 border-l-red-500;
+}
+
+.toast-info {
+  @apply border-l-4 border-l-blue-500;
+}
+
+/* Modal styles */
+.modal-backdrop {
+  @apply fixed inset-0 bg-black/60 z-50 flex items-center justify-center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  @apply bg-white dark:bg-neutral-800 rounded-2xl p-6 max-w-md w-full mx-4;
+  @apply shadow-2xl transform scale-95;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Quantity controls */
+.quantity-control {
+  @apply flex items-center gap-2 border border-neutral-300 dark:border-neutral-700 rounded-lg;
+  @apply bg-white dark:bg-neutral-800;
+}
+
+.quantity-btn {
+  @apply px-3 py-1 hover:bg-neutral-100 dark:hover:bg-neutral-700;
+  @apply transition-colors disabled:opacity-30 disabled:cursor-not-allowed;
+  @apply font-semibold text-lg;
+}
+
+.quantity-display {
+  @apply px-4 py-1 border-x border-neutral-300 dark:border-neutral-700;
+  @apply min-w-[40px] text-center font-medium;
+}
+
+/* Header navigation active link */
+.nav-link {
+  @apply px-3 py-2 rounded-lg text-neutral-700 dark:text-neutral-300;
+  @apply hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors;
+  @apply font-medium text-sm;
+}
+
+.nav-link-active {
+  @apply px-3 py-2 rounded-lg font-medium text-sm;
+  @apply bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400;
+  @apply hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors;
+}
+
+/* Grid layouts */
+.product-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+}
+
+/* Footer link groups */
+.footer-link-group {
+  @apply space-y-3;
+}
+
+.footer-link {
+  @apply text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400;
+  @apply transition-colors text-sm;
+}
+
+/* Empty state */
+.empty-state {
+  @apply flex flex-col items-center justify-center py-16 text-center;
+}
+
+.empty-state-icon {
+  @apply text-6xl text-neutral-300 dark:text-neutral-600 mb-4;
+}
+
+.empty-state-title {
+  @apply text-xl font-semibold text-neutral-700 dark:text-neutral-300 mb-2;
+}
+
+.empty-state-description {
+  @apply text-neutral-500 dark:text-neutral-400 max-w-md;
+}
