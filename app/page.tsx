@@ -5,12 +5,13 @@
 
 'use client';
 
+import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { products, searchProducts } from '@/lib/data/products';
 import { ProductGrid } from '@/components/ProductGrid';
 import { useFavorites } from '@/hooks/useFavorites';
 
-export default function HomePage() {
+function HomePageContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
   const showFavorites = searchParams.get('favorites') === 'true';
@@ -54,6 +55,14 @@ export default function HomePage() {
         }
       />
     </div>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={<div className="container-custom py-8">Loading...</div>}>
+      <HomePageContent />
+    </Suspense>
   );
 }
 

@@ -5,7 +5,7 @@
 
 "use client";
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef, Suspense } from "react";
 import { FaSearch, FaTimes } from "react-icons/fa";
 import { useRouter, useSearchParams } from "next/navigation";
 import clsx from "clsx";
@@ -20,10 +20,10 @@ interface SearchBarProps {
   onResultClick?: () => void;
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({
+function SearchBarContent({
   className,
   onResultClick,
-}) => {
+}: SearchBarProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
@@ -197,5 +197,32 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         </div>
       )}
     </div>
+  );
+}
+
+export const SearchBar: React.FC<SearchBarProps> = (props) => {
+  return (
+    <Suspense fallback={
+      <div className={clsx("relative", props.className)}>
+        <div className="relative">
+          <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
+          <input
+            type="text"
+            disabled
+            placeholder="Search flowers..."
+            className={clsx(
+              "w-full pl-10 pr-10 py-2.5 rounded-lg",
+              "border border-neutral-300 dark:border-dark-border",
+              "bg-white dark:bg-dark-card",
+              "text-neutral-900 dark:text-dark-text",
+              "placeholder-neutral-500",
+              "opacity-50"
+            )}
+          />
+        </div>
+      </div>
+    }>
+      <SearchBarContent {...props} />
+    </Suspense>
   );
 };
